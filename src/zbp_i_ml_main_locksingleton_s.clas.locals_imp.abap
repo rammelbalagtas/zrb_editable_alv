@@ -1,3 +1,32 @@
+*CLASS lhc_main DEFINITION INHERITING FROM cl_abap_behavior_handler.
+*
+**  PRIVATE SECTION.
+*
+**    METHODS get_instance_features FOR INSTANCE FEATURES
+**      IMPORTING keys REQUEST requested_features FOR Main RESULT result.
+*
+*ENDCLASS.
+*
+*CLASS lhc_main IMPLEMENTATION.
+*
+**  METHOD get_instance_features.
+**    READ ENTITIES OF Z_I_ML_MAIN_LockSingleton_S IN LOCAL MODE
+**        ENTITY Main
+**          ALL FIELDS
+**          WITH CORRESPONDING #(  keys  )
+**        RESULT DATA(lt_main).
+**    IF sy-subrc EQ 0.
+**    ENDIF.
+**
+**    result = VALUE #( FOR ls_main IN lt_main
+**                        ( %tky    = ls_main-%tky
+**                          %field-ProcessKey = if_abap_behv=>fc-f-unrestricted
+**
+**                         ) ).
+**  ENDMETHOD.
+*
+*ENDCLASS.
+
 CLASS lhc_Singleton DEFINITION INHERITING FROM cl_abap_behavior_handler.
   PRIVATE SECTION.
 

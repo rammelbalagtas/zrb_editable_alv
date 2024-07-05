@@ -9,10 +9,10 @@ annotate entity Z_C_PCI_ML_MAIN_S with
 {
   @UI.facet: 
         [{
-            id         : 'ProcessDetail',
+            id         : 'Process',
             purpose    : #STANDARD,
             position   : 10,
-            label      : 'Process Detail',
+            label      : 'Process',
             type: #IDENTIFICATION_REFERENCE
         },
         {

@@ -1,7 +1,7 @@
 @EndUserText.label: 'Projection view for Z_I_PCI_ML_MAIN_S'
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @Metadata.allowExtensions: true
-@ObjectModel.semanticKey: ['ProcessKey']
+//@ObjectModel.semanticKey: ['ProcessKey']
 define view entity Z_C_PCI_ML_MAIN_S as projection on Z_I_PCI_ML_MAIN_S
 {
     key ProcessKey,

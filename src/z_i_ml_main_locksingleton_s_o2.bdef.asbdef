@@ -1,27 +1,20 @@
-managed implementation in class zbp_i_ml_main_locksingleton_s unique;
+managed implementation in class zbp_i_ml_main_locksingleton_o2 unique;
 strict ( 2 );
-//with draft;
 
-define behavior for Z_I_ML_MAIN_LockSingleton_S alias Singleton
+define behavior for Z_I_ML_MAIN_LockSingleton_S_O2 alias Singleton
 with unmanaged save
-//draft table zpciml_lockd
 lock master
 etag master LastChangedAtMax
 authorization master ( global )
 {
   field ( readonly ) SingletonID, LastChangedAtMax;
-  // standard operations for travel entity
   update;
   association _Main { create; }
-//  draft action Edit;
-//  draft action Activate optimized;
-//  draft action Discard;
-//  draft action Resume;
-//  draft determine action Prepare;
+
 }
 
-define behavior for Z_I_PCI_ML_MAIN_S alias Main
-persistent table zpci_ml_main
+define behavior for Z_I_PCI_ML_MAIN_S_O2 alias Main
+persistent table zpciml_main_o2
 lock dependent by _MainLockSingleton
 authorization dependent by _MainLockSingleton
 etag master LocalLastChangedAt
@@ -32,7 +25,7 @@ etag master LocalLastChangedAt
   field ( readonly ) SingletonID, LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
   association _MainLockSingleton { }
   association _List { create; }
-  mapping for zpci_ml_main
+  mapping for zpciml_main_o2
     {
       ProcessKey         = process_key;
       ScriptId           = script_id;
@@ -45,8 +38,8 @@ etag master LocalLastChangedAt
     }
 }
 
-define behavior for Z_i_pci_ml_list_s alias List
-persistent table zpci_ml_list
+define behavior for Z_i_pci_ml_list_s_o2 alias List
+persistent table zpciml_list_o2
 lock dependent by _MainLockSingleton
 authorization dependent by _MainLockSingleton
 etag master LocalLastChangedAt

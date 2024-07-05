@@ -3,7 +3,7 @@
 @UI: { headerInfo: { typeName: 'Table Maintainance',
                      typeNamePlural: 'Table Maintainance',
                      title: { type: #STANDARD, value: 'SingletonID' } } }
-annotate entity Z_C_ML_MAIN_LOCKSINGLETON_S with
+annotate entity Z_C_ML_MAIN_LOCKSINGLETON_S_O2 with
 {
   @UI.facet: [{
       purpose:  #STANDARD,
