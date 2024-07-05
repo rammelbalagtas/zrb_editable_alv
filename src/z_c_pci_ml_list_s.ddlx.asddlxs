@@ -1,0 +1,49 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'Recipient',
+                     typeNamePlural: 'Recipients',
+                     title:          { type: #STANDARD,
+                                       label: 'Process Sequence',
+                                       value: 'ProcessSeq' } } }
+annotate entity Z_C_PCI_ML_LIST_S with
+{
+  @UI.facet: [{ type: #IDENTIFICATION_REFERENCE }]
+  
+  @EndUserText.label: 'Process Key'
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  ProcessKey;
+  @EndUserText.label: 'Sequence'
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  ProcessSeq;
+  @EndUserText.label: 'Send to SAP'
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  SendToSap;
+  @EndUserText.label: 'SAP User'
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
+  SapAddress;
+  @EndUserText.label: 'Send to SMTP'
+  @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 50 }]
+  SendToSmtp;
+  @EndUserText.label: 'Email Address'
+  @UI.lineItem: [{ position: 60 }]
+  @UI.identification: [{ position: 60 }]
+  SmtpAddress;
+  @EndUserText.label: 'Express'
+  @UI.lineItem: [{ position: 70 }]
+  @UI.identification: [{ position: 70 }]
+  Express;
+  @EndUserText.label: 'Copy'
+  @UI.lineItem: [{ position: 80 }]
+  @UI.identification: [{ position: 80 }]
+  Copy;
+  @EndUserText.label: 'Blind Copy'
+  @UI.lineItem: [{ position: 90 }]
+  @UI.identification: [{ position: 90 }]
+  Blindcopy;
+
+}

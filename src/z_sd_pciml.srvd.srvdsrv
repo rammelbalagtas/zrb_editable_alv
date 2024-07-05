@@ -1,0 +1,7 @@
+@EndUserText.label: 'PCI ML Service Definition'
+@ObjectModel.leadingEntity.name: 'Z_C_ML_MAIN_LOCKSINGLETON_S'
+define service Z_SD_PCIML {
+  expose Z_C_ML_MAIN_LOCKSINGLETON_S;
+  expose Z_C_PCI_ML_MAIN_S;
+  expose Z_C_PCI_ML_LIST_S;
+}

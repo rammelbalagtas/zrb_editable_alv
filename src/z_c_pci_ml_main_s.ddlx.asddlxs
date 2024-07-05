@@ -1,0 +1,42 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'Process',
+                     typeNamePlural: 'Processes',
+                     title:          { type: #STANDARD,
+                                       label: 'Process Key',
+                                       value: 'ProcessKey' } } }
+annotate entity Z_C_PCI_ML_MAIN_S with
+{
+  @UI.facet: 
+        [{
+            id         : 'ProcessDetail',
+            purpose    : #STANDARD,
+            position   : 10,
+            label      : 'Process Detail',
+            type: #IDENTIFICATION_REFERENCE
+        },
+        {
+            id         : 'Recipient',
+            purpose    : #STANDARD,
+            position   : 20,
+            label      : 'Recipient List',
+            type       :  #LINEITEM_REFERENCE,
+            targetElement: '_List',
+            hidden: #(SCO31A1)
+        }]
+
+  @EndUserText.label: 'Process Key'
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  ProcessKey;
+
+  @EndUserText.label: 'Script ID'
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  ScriptId;
+
+  @EndUserText.label: 'Process Description'
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  ProcessDesc;
+}

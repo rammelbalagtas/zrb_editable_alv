@@ -1,0 +1,80 @@
+managed implementation in class zbp_i_ml_main_locksingleton_s unique;
+strict ( 2 );
+with draft;
+
+define behavior for Z_I_ML_MAIN_LockSingleton_S alias Singleton
+with unmanaged save
+draft table zpciml_lockd
+lock master
+total etag LastChangedAtMax
+authorization master ( global )
+{
+  field ( readonly ) SingletonID, LastChangedAtMax;
+
+  association _Main { create; with draft; }
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+}
+
+define behavior for Z_I_PCI_ML_MAIN_S alias Main
+persistent table zpci_ml_main
+draft table zpci_ml_maind
+lock dependent by _MainLockSingleton
+authorization dependent by _MainLockSingleton
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  field ( mandatory : create ) ProcessKey;
+  field ( readonly : update ) ProcessKey;
+  field ( readonly ) SingletonID, LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
+  association _MainLockSingleton { with draft; }
+  association _List { create; with draft; }
+  mapping for zpci_ml_main
+    {
+      ProcessKey         = process_key;
+      ScriptId           = script_id;
+      ProcessDesc        = process_desc;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}
+
+define behavior for Z_i_pci_ml_list_s alias List
+persistent table zpci_ml_list
+draft table zpci_ml_listd
+lock dependent by _MainLockSingleton
+authorization dependent by _MainLockSingleton
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  field ( mandatory : create ) ProcessSeq;
+  field ( readonly : update ) ProcessSeq;
+  field ( readonly ) SingletonID, ProcessKey, LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
+  association _MainLockSingleton { with draft; }
+  association _Main { with draft; }
+  mapping for zpci_ml_list
+    {
+      ProcessKey         = process_key;
+      ProcessSeq         = process_seq;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+      SendToSap          = send_to_sap;
+      SapAddress         = sap_address;
+      SendToSmtp         = send_to_smtp;
+      SmtpAddress        = smtp_address;
+      Express            = express;
+      Copy               = copy;
+      Blindcopy          = blindcopy;
+    }
+}

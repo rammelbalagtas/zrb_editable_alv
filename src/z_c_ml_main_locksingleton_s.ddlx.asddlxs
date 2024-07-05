@@ -1,0 +1,19 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName: 'Table Maintainance',
+                     typeNamePlural: 'Table Maintainance',
+                     title: { type: #STANDARD, value: 'SingletonID' } } }
+annotate entity Z_C_ML_MAIN_LOCKSINGLETON_S with
+{
+  @UI.facet: [{
+      purpose:  #STANDARD,
+      type:     #LINEITEM_REFERENCE,
+      label:    'Header Information',
+      position: 10,
+      targetElement: '_Main'
+    }]
+
+  @UI.lineItem: [{ position: 10, label: 'Table Name' }]
+  SingletonID;
+
+}
