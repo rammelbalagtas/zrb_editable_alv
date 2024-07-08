@@ -1,0 +1,55 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'FioriAppMaintenance', 
+    typeNamePlural: 'FioriAppMaintenances', 
+    title: {
+      type: #STANDARD, 
+      label: 'Fiori app table maintenance', 
+      value: 'ProcessKey'
+    }
+  }
+}
+annotate view ZI_FioriAppMaintenance with
+{
+  @UI.identification: [ {
+    position: 1 
+  } ]
+  @UI.lineItem: [ {
+    position: 1 
+  }, 
+  {
+    type: #FOR_ACTION, 
+    dataAction: 'CopyFioriAppMaintenance', 
+    label: 'Copy Selected Entry', 
+    invocationGrouping: #CHANGE_SET
+  } ]
+  @UI.facet: [ {
+    id: 'ZI_FioriAppMaintenance', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Fiori app table maintenance', 
+    position: 1 
+  } ]
+  ProcessKey;
+  
+  @UI.identification: [ {
+    position: 2 , 
+    label: 'Script ID'
+  } ]
+  @UI.lineItem: [ {
+    position: 2 , 
+    label: 'Script ID'
+  } ]
+  ScriptId;
+  
+  @UI.identification: [ {
+    position: 3 , 
+    label: 'Process Description'
+  } ]
+  @UI.lineItem: [ {
+    position: 3 , 
+    label: 'Process Description'
+  } ]
+  ProcessDesc;
+}

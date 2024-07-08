@@ -1,0 +1,46 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'FioriAppMaintAll'
+  }
+}
+annotate view ZI_FioriAppMaintenance_S with
+{
+  @UI.facet: [ {
+    id: 'Transport', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Transport', 
+    position: 1 , 
+    hidden: #(HideTransport)
+  }, 
+  {
+    id: 'ZI_FioriAppMaintenance', 
+    purpose: #STANDARD, 
+    type: #LINEITEM_REFERENCE, 
+    label: 'Fiori app table maintenance', 
+    position: 2 , 
+    targetElement: '_FioriAppMaintenance'
+  } ]
+  @UI.lineItem: [ {
+    position: 1 
+  } ]
+  SingletonID;
+  
+  @UI.hidden: true
+  HideTransport;
+  
+  @UI.identification: [ {
+    position: 2 , 
+    importance: #HIGH, 
+    type: #WITH_INTENT_BASED_NAVIGATION, 
+    semanticObjectAction: 'manage'
+  }, 
+  {
+    type: #FOR_ACTION, 
+    dataAction: 'SelectCustomizingTransptReq', 
+    label: 'Select Transport'
+  } ]
+  @Consumption.semanticObject: 'CustomizingTransport'
+  TransportRequestID;
+}

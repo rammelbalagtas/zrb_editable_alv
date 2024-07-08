@@ -1,0 +1,86 @@
+managed with additional save implementation in class ZBP_I_FIORIAPPMAINTENANCE_S unique;
+strict;
+with draft;
+define behavior for ZI_FioriAppMaintenance_S alias FioriAppMaintAll
+draft table ZFIORIAPPMA_D_S
+with unmanaged save
+lock master total etag LastChangedAtMax
+authorization master( global )
+
+{
+  field ( readonly )
+   SingletonID,
+   TransportRequestID;
+
+  field ( notrigger )
+   SingletonID,
+   HideTransport,
+   LastChangedAtMax;
+
+
+  update;
+  internal create;
+  internal delete;
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  action ( features : instance ) SelectCustomizingTransptReq parameter D_SelectCustomizingTransptReqP result [1] $self;
+
+  association _FioriAppMaintenance { create ( features : instance ); with draft; }
+}
+
+define behavior for ZI_FioriAppMaintenance alias FioriAppMaintenance
+persistent table ZFIORIAPPMAINT
+draft table ZFIORIAPPMAIN_D
+etag master LocalLastChangedAt
+lock dependent by _FioriAppMaintAll
+authorization dependent by _FioriAppMaintAll
+
+{
+  field ( mandatory : create )
+   ProcessKey;
+
+  field ( readonly )
+   SingletonID,
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( readonly : update )
+   ProcessKey;
+
+  field ( notrigger )
+   SingletonID,
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+
+  update( features : global );
+  delete( features : global );
+
+  factory action ( features : instance ) CopyFioriAppMaintenance parameter ZD_CopyFioriAppMaintP [1];
+
+  mapping for ZFIORIAPPMAINT
+  {
+    ProcessKey = PROCESS_KEY;
+    ScriptId = SCRIPT_ID;
+    ProcessDesc = PROCESS_DESC;
+    LocalCreatedBy = LOCAL_CREATED_BY;
+    LocalCreatedAt = LOCAL_CREATED_AT;
+    LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+    LastChangedAt = LAST_CHANGED_AT;
+  }
+
+  association _FioriAppMaintAll { with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; delete; }
+}

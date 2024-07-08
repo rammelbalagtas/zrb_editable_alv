@@ -5,14 +5,14 @@
                      title:          { type: #STANDARD,
                                        label: 'Process Sequence',
                                        value: 'ProcessSeq' } } }
-annotate entity Z_C_PCI_ML_LIST_S with
+annotate entity Z_C_PCI_ML_LIST_S_O2 with
 {
   @UI.facet: [{ type: #IDENTIFICATION_REFERENCE }]
   
-//  @EndUserText.label: 'Process Key'
-//  @UI.lineItem: [{ position: 10 }]
-//  @UI.identification: [{ position: 10 }]
-//  ProcessKey;
+  @EndUserText.label: 'Process Key'
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  ProcessKey;
   @EndUserText.label: 'Sequence'
   @UI.lineItem: [{ position: 20 }]
   @UI.identification: [{ position: 20 }]

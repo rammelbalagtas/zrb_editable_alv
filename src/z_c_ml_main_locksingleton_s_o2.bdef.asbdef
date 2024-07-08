@@ -1,0 +1,28 @@
+projection;
+strict ( 2 );
+
+define behavior for Z_C_ML_MAIN_LOCKSINGLETON_S_O2 //alias <alias_name>
+{
+  use update;
+
+  use association _Main { create; }
+  field ( suppress ) lastchangedatmax;
+}
+
+define behavior for Z_C_PCI_ML_MAIN_S_O2 //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _MainLockSingleton;
+  use association _List { create; }
+}
+
+define behavior for Z_C_PCI_ML_LIST_S_O2 //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _MainLockSingleton;
+  use association _Main;
+}

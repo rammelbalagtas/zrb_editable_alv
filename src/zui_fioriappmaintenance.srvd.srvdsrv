@@ -1,0 +1,5 @@
+@ObjectModel.leadingEntity.name: 'ZI_FioriAppMaintenance_S'
+define service ZUI_FIORIAPPMAINTENANCE {
+  expose ZI_FIORIAPPMAINTENANCE_S as FioriAppMaintAll;
+  expose ZI_FIORIAPPMAINTENANCE as FioriAppMaintenance;
+}
