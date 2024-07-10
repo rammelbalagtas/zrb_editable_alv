@@ -1,8 +1,9 @@
 projection;
 strict ( 2 );
 use draft;
+use side effects;
 
-define behavior for Z_C_ML_MAIN_LOCKSINGLETON_S //alias <alias_name>
+define behavior for Z_C_ML_MAIN_LOCKSINGLETON_S alias Singleton
 {
 
   use action Edit;
@@ -15,7 +16,7 @@ define behavior for Z_C_ML_MAIN_LOCKSINGLETON_S //alias <alias_name>
   field ( suppress ) lastchangedatmax;
 }
 
-define behavior for Z_C_PCI_ML_MAIN_S //alias <alias_name>
+define behavior for Z_C_PCI_ML_MAIN_S alias Main
 {
   use update;
   use delete;
@@ -24,7 +25,7 @@ define behavior for Z_C_PCI_ML_MAIN_S //alias <alias_name>
   use association _List { create; with draft; }
 }
 
-define behavior for Z_C_PCI_ML_LIST_S //alias <alias_name>
+define behavior for Z_C_PCI_ML_LIST_S alias List
 {
   use update;
   use delete;

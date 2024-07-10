@@ -16,7 +16,12 @@ authorization master ( global )
   draft action Activate optimized;
   draft action Discard;
   draft action Resume;
-  draft determine action Prepare;
+  draft determine action Prepare
+  {
+    validation Main~validateScriptId;
+    validation List~validateSapAddress;
+    validation List~validateSmtpAddress;
+  }
 }
 
 define behavior for Z_I_PCI_ML_MAIN_S alias Main
@@ -29,9 +34,12 @@ etag master LocalLastChangedAt
   update;
   delete;
   field ( mandatory : create, readonly : update ) ProcessKey;
+  field ( mandatory ) ScriptId;
   field ( readonly ) SingletonID, LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
   association _MainLockSingleton { with draft; }
   association _List { create; with draft; }
+  validation validateScriptId on save { create; }
+
   mapping for zpci_ml_main
     {
       ProcessKey         = process_key;
@@ -56,8 +64,13 @@ etag master LocalLastChangedAt
   delete;
   field ( mandatory : create, readonly : update ) ProcessSeq;
   field ( readonly ) ProcessKey, SingletonID, LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
+  field ( features : instance ) SapAddress, SmtpAddress, SendToSap, SendToSmtp;
+  validation validateSapAddress on save { create; field SendToSap, SapAddress; }
+  validation validateSmtpAddress on save { create; field SendToSmtp, SmtpAddress; }
   association _MainLockSingleton { with draft; }
   association _Main { with draft; }
+  determination onModifySendToSap on modify { create; field SendToSap; }
+  determination onModifySendToSmtp on modify { create; field SendToSmtp; }
   mapping for zpci_ml_list
     {
       ProcessKey         = process_key;
@@ -75,4 +88,14 @@ etag master LocalLastChangedAt
       Copy               = copy;
       Blindcopy          = blindcopy;
     }
+  side effects
+  {
+    field SendToSap affects field SapAddress,
+        field SmtpAddress,
+        permissions ( field SapAddress, field SmtpAddress, field SendToSap, field SendToSmtp );
+    field SendToSmtp affects field SapAddress,
+        field SmtpAddress,
+        permissions ( field SapAddress, field SmtpAddress, field SendToSap, field SendToSmtp );
+  }
+
 }
