@@ -21,8 +21,7 @@ annotate entity Z_C_PCI_ML_MAIN_S with
             position   : 20,
             label      : 'Recipient List',
             type       :  #LINEITEM_REFERENCE,
-            targetElement: '_List',
-            hidden: #(SCO31A1)
+            targetElement: '_List'
         }]
 
   @EndUserText.label: 'Process Key'
