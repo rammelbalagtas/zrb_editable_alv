@@ -68,7 +68,7 @@
             <LOW_VALUE>ZFIORIAPPMAINT</LOW_VALUE>
            </item>
           </VALUES>
-          <TEXT>Table or View</TEXT>
+          <TEXT>Table Name</TEXT>
           <STATUS>U</STATUS>
          </item>
         </VALUES>
@@ -106,7 +106,7 @@
             <LOW_VALUE>ZI_FIORIAPPMAINTENANCE</LOW_VALUE>
            </item>
           </VALUES>
-          <TEXT>Table or View</TEXT>
+          <TEXT>Table Name</TEXT>
           <STATUS>U</STATUS>
          </item>
         </VALUES>
