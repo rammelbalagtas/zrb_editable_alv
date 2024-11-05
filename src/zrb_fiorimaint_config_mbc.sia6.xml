@@ -7,7 +7,7 @@
      <NAME>ZRB_FIORIMAINT_CONFIG_MBC</NAME>
      <TYPE>SIA6</TYPE>
      <DESCRIPTION>Fiori Maintenance BC</DESCRIPTION>
-     <RESPONSIBLE>CB9980005871</RESPONSIBLE>
+     <RESPONSIBLE>CB9980011183</RESPONSIBLE>
      <MASTER_LANGUAGE>EN</MASTER_LANGUAGE>
      <MASTER_SYSTEM>TRL</MASTER_SYSTEM>
      <PACKAGE_REF>
@@ -68,7 +68,7 @@
             <LOW_VALUE>ZFIORIAPPMAINT</LOW_VALUE>
            </item>
           </VALUES>
-          <TEXT>Table Name</TEXT>
+          <TEXT>Table or View</TEXT>
           <STATUS>U</STATUS>
          </item>
         </VALUES>
@@ -106,7 +106,7 @@
             <LOW_VALUE>ZI_FIORIAPPMAINTENANCE</LOW_VALUE>
            </item>
           </VALUES>
-          <TEXT>Table Name</TEXT>
+          <TEXT>Table or View</TEXT>
           <STATUS>U</STATUS>
          </item>
         </VALUES>
